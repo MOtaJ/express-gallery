@@ -1,0 +1,33 @@
+body {
+}
+
+h1 {
+
+}
+
+.header_box {
+
+}
+
+.header_description {
+  float: right;
+}
+
+.image_box {
+  flex: 1 1 33%;
+  background-color: white;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 10px;
+  background-color: 'red';
+  height: 350px;
+  justify-content: center;
+  -webkit-box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
+  box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
+}
+
+.post_box {
+  text-align: center;
+}
+

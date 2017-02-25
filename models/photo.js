@@ -1,16 +1,16 @@
 "use strict";
 
 module.exports = function (sequelize, DataTypes) {
-  let photo = sequelize.define("photo", {
+  let photo = sequelize.define("Photo", {
     author: {
       type: DataTypes.STRING,
     },
     link: {
-      type: DataTypes.STRING(1234),
+      type: DataTypes.STRING,
     },
     description: {
       type: DataTypes.STRING,
-    }
+    },
   });
   return photo;
 };

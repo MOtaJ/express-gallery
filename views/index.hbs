@@ -1,0 +1,34 @@
+{{!-- <div class="top-border"></div>
+
+<div id="header">
+  <h1>_ARCHITEKT</h1>
+</div>
+
+<div id="header-info">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut laaliqua. Ut enim ad minim veniam,
+  quis nosalsdkfd kdls</p>
+</div>
+
+
+
+{{#each photos}}
+<img src="{{link}}" alt=""> <br>
+Author: {{author}} <br>
+Description: {{description}} <br>
+ID: {{id}} <br>
+{{/each}}
+
+<div class="bottom-border"></div> --}}
+
+<div class="gallery_container">
+{{#each photos}}
+  <div class="post_box">
+    <a href='/gallery/{{id}}'><img class="image_box" src="{{link}}" alt=""></a>
+    <br>
+    <div class ="post_header">Author: {{author}}</div>
+    <div class="post_header">Link: {{link}}</div>
+    <div class ="post_header">Description: {{description}}</div>
+  </div>
+{{/each}}
+</div>
