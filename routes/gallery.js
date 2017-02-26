@@ -20,14 +20,14 @@ function isAuthenticated (req, res, next) {
   }
 }
 
-router.get('/', (req, res) => {
+router.get('/', isAuthenticated, (req, res) => {
   Photo.findAll({order: "id"})
   .then(function(photos) {
     res.render('index', {photos : photos});
   });
 });
 
-router.get('/users', (req, res) => {
+router.get('/users', isAuthenticated, (req, res) => {
   User.findAll()
   .then(function(users) {
     res.render('index', {users : users});

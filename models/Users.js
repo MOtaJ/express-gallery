@@ -1,4 +1,7 @@
 "use strict";
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 module.exports = function (sequelize, DataTypes) {
   let user = sequelize.define("User", {
@@ -19,9 +22,26 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   }, {
+      setterMethods: {
+        password: function (password) {
+          let hash = hashPassword(password);
+          this.setDataValue('password', has)
+        }
+      },
       classMethods: {
+        hashPassword: hashPassword
 
       }
     });
   return user;
 };
+
+function hashPassword (password) {
+  return bcrypt.compare(password, User.password).then(res => {
+    if (res) {
+      return done(null, user)
+    } else {
+      return done(null, false, {message: 'incorrect password'})
+    }
+  })
+}

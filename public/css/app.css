@@ -2,32 +2,64 @@ body {
 }
 
 h1 {
-
+  width: 60%;
+  font-size: 4rem;
+  font-family: Open Sans;
+  border: solid 2px;
+  color: #7C777D;
+  padding-left: 10px;
+  margin-right: 30px;
+  letter-spacing: 6px;
 }
 
-.header_box {
-
+.header {
+  display: flex;
 }
 
-.header_description {
-  float: right;
+.title{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  border: solid 2px;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  color: #7C777D;
+}
+
+.headerIntro {
+
+  display: flex-wrap;
+  width: 30%;
+  font-family: Open Sans;
+  align-self: center;
+  padding-left: 40px;
+  border: solid 2px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.post_box {
+  border: solid 2px;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .image_box {
-  flex: 1 1 33%;
-  background-color: white;
+  flex: 1 2 66%;
+  width: 45%;
   box-sizing: border-box;
   text-align: center;
   margin: 10px;
-  background-color: 'red';
-  height: 350px;
   justify-content: center;
   -webkit-box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
   box-shadow: 10px 5px 6px 1px rgba(0,0,0,0.75);
+  border: solid 2px;
 }
 
-.post_box {
-  text-align: center;
+.post_header {
+  color: #7C777D;
+  font-family: Open Sans;
 }
-
