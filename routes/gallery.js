@@ -12,6 +12,7 @@ router.use(bodyParser.urlencoded({extended : true}))
 router.use(bodyParser.json());
 
 function isAuthenticated (req, res, next) {
+  console.log(req.path);
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -20,7 +21,7 @@ function isAuthenticated (req, res, next) {
   }
 }
 
-router.get('/', isAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
   Photo.findAll({order: "id"})
   .then(function(photos) {
     res.render('index', {photos : photos});
@@ -54,7 +55,7 @@ router.post('/new', (req, res) => {
     description: req.body.description
   })
   .then(function() {
-    res.redirect(303, '/gallery');
+    res.redirect(303, '/');
   })
 });
 
@@ -68,19 +69,15 @@ router.get('/:id', (req, res) => {
 router.post('/newUser', (req, res) => {
   req.body.username;
   req.body.password;
-
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(req.body.password, salt, function(err, hash) {
-    console.log('hash', hash)
-      User.create({
+  console.log(req.body.password);
+      return User.create({
         username: req.body.username,
-        password: hash
+        password: req.body.password
       }).then( _ => {
-        res.redirect('/gallery');
+        console.log(_)
+        res.redirect('/gallery/login');
       })
     })
-  })
-})
 
 /*router.post('/create_user', (req, res) => {
   console.log(req.body);

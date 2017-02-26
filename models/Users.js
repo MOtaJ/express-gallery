@@ -24,8 +24,8 @@ module.exports = function (sequelize, DataTypes) {
   }, {
       setterMethods: {
         password: function (password) {
-          let hash = hashPassword(password);
-          this.setDataValue('password', has)
+          let hash = hashPassword(password)
+          this.setDataValue('password', hash)
         }
       },
       classMethods: {
@@ -37,11 +37,7 @@ module.exports = function (sequelize, DataTypes) {
 };
 
 function hashPassword (password) {
-  return bcrypt.compare(password, User.password).then(res => {
-    if (res) {
-      return done(null, user)
-    } else {
-      return done(null, false, {message: 'incorrect password'})
-    }
-  })
+  let salt = bcrypt.genSaltSync(saltRounds);
+  let hash = bcrypt.hashSync(password, salt)
+  return hash;
 }
