@@ -1,4 +1,22 @@
-<img src="{{photo.link}}" alt =""><br>
-Author: {{photo.author}} <br>
-Description: {{photo.description}} <br>
-ID: {{photo.id}} <br>
+<div class="gallery_container">
+  {{#if loggedIn}}
+      <form action="/gallery/edit/{{id}}" method = "PUT">
+        <input type="submit" value = "Edit">
+      </form>
+      <form action="/gallery/delete/{{id}}" method = "DELETE">
+        <input type="submit" value = "Delete">
+      </form>
+
+      {{else}}
+      not logged in
+  {{/if}}
+
+  <div class="post_box">
+    <a href='/gallery/{{photos.id}}'><img class="image_box" src="{{photos.link}}" alt=""></a>
+    <br>
+    <div class ="post_header">Author: {{photos.author}}</div>
+    <div class ="post_header">Link: {{photos.link}}</div>
+    <div class ="post_header">Description: {{photos.description}}</div>
+    <div class = "post_header">
+  </div>
+</div>

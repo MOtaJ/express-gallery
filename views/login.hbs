@@ -11,3 +11,15 @@
         <input type="submit" value="Log In"/>
     </div>
 </form>
+
+<div id="sidebar">
+  {{#each photos}}
+      <a href="/gallery/{{id}}">
+        <div class="photos" style="background:url({{link}}); background-size: cover; background-position: center;
+        "></div>
+      </a>
+      <div class="author">
+        Author: {{author}}
+    </div>
+  {{/each}}
+</div>

@@ -1,14 +1,22 @@
 const express = require('express');
-const gallery = require('./routes/gallery.js');
+let app = express();
 const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const CONFIG = require('./config/config.json');
-const User = require('./models').User;
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const PORT = process.env.PORT || 4000;
+const db = require('./models');
+const { Photo } = db;
+const { User } = db;
+const gallery = require('./routes/gallery.js');
+
 /*const Sequelize = require('sequelize');
 const sequelize = new Sequelize('express_gallery', 'markota', null, { username: 'markota',
   password: null,
@@ -31,22 +39,9 @@ sequelize.sync().then(function() {
     plain: true
   }));
 });*/
-
-const saltRounds = 10;
-
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
-const PORT = process.env.PORT || 4000;
-
-const db = require('./models');
-let app = express();
-
-app.use(express.static('public'));
 app.use(cookieParser());
-/*app.use(session({secret: "Something"}));*/
-
 app.use(methodOverride('_method'));
+
 app.use(bodyparser.urlencoded({extended : true}));
 app.use(bodyparser.json());
 app.use(session({
@@ -54,8 +49,11 @@ app.use(session({
   secret: CONFIG.SESSION_SECRET,
   resave: false
 }))
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+/*app.use(session({secret: "Something"}));*/
 
 /*const authenticate = (username, password) => {
   // get user data from the DB
@@ -90,7 +88,7 @@ passport.use(new LocalStrategy(
       });
      }
     }).catch(err => {
-      console.log('error:', err)
+      console.log(err)
     })
   }
 ))
@@ -109,7 +107,6 @@ passport.deserializeUser(function(user, done) {
     }
   })
   .then(function(user){
-    console.log(user);
     return done(null, user)
   });
 
@@ -125,7 +122,9 @@ const hbs = handlebars.create(
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
+app.use(express.static('public'));
 app.use('/gallery', gallery);
+
 
 app.listen(PORT, () => {
   db.sequelize.sync();

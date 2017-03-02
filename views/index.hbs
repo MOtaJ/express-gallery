@@ -21,7 +21,9 @@ ID: {{id}} <br>
 
 <div class="bottom-border"></div> --}}
 
+
 <div class="gallery_container">
+
 {{#each photos}}
   <div class="post_box">
     <a href='/gallery/{{id}}'><img class="image_box" src="{{link}}" alt=""></a>
@@ -29,6 +31,20 @@ ID: {{id}} <br>
     <div class ="post_header">Author: {{author}}</div>
     <div class="post_header">Link: {{link}}</div>
     <div class ="post_header">Description: {{description}}</div>
+    <div class = "post_header"> test </div>
+      {{#if ../loggedIn}}
+      <form action="/gallery/{{id}}/edit" method = "PUT">
+        <input type="submit" value = "Edit">
+      </form>
+      <form action="/gallery" method = "DELETE">
+        <input type="submit" value = "Delete">
+      </form>
+
+      {{else}}
+      not logged in
+  {{/if}}
   </div>
 {{/each}}
+
+
 </div>

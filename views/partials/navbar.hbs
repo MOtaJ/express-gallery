@@ -1,0 +1,20 @@
+{{#if loggedIn}}
+
+  Hi there, {{username}}
+ <form action="/gallery/new" method ="GET">
+   <input type="submit" value = "Create A New Post">
+ </form>
+ <form action="/gallery/logout">
+   <input type="submit" value = "Log Out">
+ </form>
+
+{{else}}
+
+  Welcome, Guest!
+  <form action="/gallery/newUser" method="GET">
+    <input type="submit" value = "Create A New User">
+  </form>
+  <form action="/gallery/login" method="GET">
+    <input type="submit" value = "Log In">
+  </form>
+{{/if}}

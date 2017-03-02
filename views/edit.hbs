@@ -1,12 +1,12 @@
-<form action="/gallery/{{images.id}}?_method=PUT" method="POST">
-
+<form action="/gallery/{{photos.id}}/?_method=PUT" method="POST">
+  <input type="hidden" name = "{{req.body.id}}"><br>
 
   AUTHOR: <br>
-  <input type="text" placeholder="{{images.author}}" name ="author"><br>
+  <input type="text" placeholder="{{photos.author}}" name ="author"><br>
   LINK: <br>
-  <input type="text" placeholder="{{images.link}}" name ="link"> <br>
+  <input type="text" placeholder="{{photos.link}}" name ="link"> <br>
   DESCRIPTION <br>
-  <input type="text" placeholder="{{images.description}}" name ="description"><br>
-  <input type="submit" value="P U T">
+  <input type="text" placeholder="{{photos.description}}" name ="description"><br>
+  <input type="submit" value="Submit Edit">
 
 </form>
